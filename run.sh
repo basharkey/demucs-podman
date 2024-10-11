@@ -20,7 +20,7 @@ stem_dir=~/Music/stems/"$artist_name"/"$album_name"
 echo "$stem_dir"
 mkdir -p "$stem_dir"
 podman run --rm -it -v "$album_dir":/input -v "$stem_dir":/output demucs:latest \
-       "demucs /input/* --out /output -d cpu --mp3 --two-stems "$stem_type""
+       "demucs /input/*.@(flac|mp3|m4a) --out /output -d cpu --mp3 --two-stems "$stem_type""
 
 cp -r "$stem_dir"/htdemucs/* "$stem_dir"
 rm -r "$stem_dir"/htdemucs

@@ -20,5 +20,8 @@ RUN demucs -d cpu test.mp3
 RUN rm -rf separated
 RUN rm -f test.mp3
 
+# Enable extended globbing for bash
+echo "\nshopt -s extglob" >> /etc/bash.bashrc
+
 ENTRYPOINT ["/bin/bash", "-c"]
-CMD ["demucs", "/input/*", "--out", "/output", "-d", "cpu"]
+CMD ["demucs", "/input/*.@(flac|mp3|m4a)", "--out", "/output", "-d", "cpu"]
